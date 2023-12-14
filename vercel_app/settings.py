@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'example',
-    'app'
+    'app',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -86,15 +87,28 @@ WSGI_APPLICATION = 'vercel_app.wsgi.app'
 # }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'URL': os.getenv('POSTGRES_URL'),
+#         'NAME': os.getenv('PGNAME'),
+#         'USER': os.getenv('PGUSER'),
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+#         'HOST': os.getenv('PGHOST'),
+#         'PORT': os.getenv('PGPORT'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'URL': os.getenv('POSTGRES_URL'),
-        'NAME': os.getenv('PGNAME'),
-        'USER': os.getenv('PGUSER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('PGHOST'),
-        'PORT': os.getenv('PGPORT'),
+        'URL': 'postgresql://postgres:3C*d-GC4cB*g-3c52Fe*1CBCaG2b143F@postgres.railway.internal:5432/railway',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': '3C*d-GC4cB*g-3c52Fe*1CBCaG2b143F',
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': '55068',
     }
 }
 
@@ -142,3 +156,17 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_SIGNATURE_VERSION = os.getenv("AWS_S3_SIGNATURE_VERSION")
+AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
+AWS_S3_FILE_OVERWRITE = False       
+AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
+
+# MERCHANT_KEY = os.getenv("MERCHANT_KEY")
+# MERCHANT_SALT = os.getenv("MERCHANT_SALT")
