@@ -1,0 +1,124 @@
+* {
+    font-family: "Courier New", monospace;
+}
+
+body {
+    font-family: "Courier New", monospace;
+    margin: 20px;
+    background-color: #000; /* Black background with green grid pattern */
+    background-image: linear-gradient(rgba(0, 255, 0, 0.1) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(0, 255, 0, 0.1) 2px, transparent 2px),
+                      linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+h1, h2, h3 {
+    color: #0f0;
+    margin-inline: 100px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #000; /* Black header */
+    color: #0f0; /* Green text */
+    margin-bottom: 20px;
+}
+
+header img {
+    max-height: 40px; /* Adjust the max-height as needed */
+    filter: hue-rotate(90deg); /* Make the logo green */
+}
+
+header a {
+    text-decoration: none;
+    color: #0f0; /* Green text */
+    font-weight: bold;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+header a:hover {
+    color: #fff; /* White text on hover */
+}
+
+form, table {
+    max-width: 50%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0f0; /* Green text */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    box-sizing: border-box;
+    border: 2px solid #0f0; /* Green border */
+    background-color: #000; /* Black background */
+    color: #0f0; /* Green text */
+}
+
+input[type="submit"], .btn {
+    text-decoration: none;
+    background-color: #0f0; /* Green background */
+    color: #000; /* Black text */
+    padding: 10px 15px;
+    font-weight: bold;
+    border: 2px solid #0f0;
+    /* border-radius: 5px; */
+    cursor: pointer;
+    margin: 10px;
+}
+
+input[type="submit"]:hover, .btn:hover {
+    background-color: transparent; 
+    border: 2px solid #0f0;
+    color: #0f0 ; /* Black text on hover */
+}
+
+h2 {
+    margin-top: 20px;
+    color: #0f0; /* Green text */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #0f0; /* Green border */
+    padding: 8px;
+    text-align: left;
+    color: #0f0; /* Green text */
+}
+
+th {
+    background-color: #0f0; /* Green background */
+    color: #000; /* Black text */
+}
+
+p {
+    color: antiquewhite;
+}
+
+.logout {
+    background-color: transparent; 
+    border: 2px solid #0f0;
+    color: #0f0 ; /* Black text on hover */
+}

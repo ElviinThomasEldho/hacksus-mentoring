@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participant Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
+        <a class="logout" href="{% url 'logoutUser' %}">Logout</a>
+    </header>
+    
+    <h1 style="text-align: center;">Welcome Back {{team.name}}!</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="issue_title">Issue Title:</label>
+        {{form.title}}
+        <br>
+        <label for="issue_description">Issue Description:</label>
+        {{form.desc}}
+        <br>
+        <label for="platform">Platform:</label>
+        {{form.platform}}
+        <br>
+        <input type="submit" value="Raise Ticket">
+    </form>
+
+
+    <div class="raised-tickets">
+        <h2>List of Tickets Raised:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time of Creation</th>
+                    <th>Issue Title</th>
+                    <th>Issue Description</th>
+                    <th>Platform</th>
+                    <th>Mentor Assigned</th>
+                    <th>Time of Closing</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate through the list of tickets and display each one -->
+                {% for ticket in tickets %}
+                    <tr>
+                        <td>{{ ticket.timeCreated }}</td>
+                        <td>{{ ticket.title }}</td>
+                        <td>{{ ticket.desc }}</td>
+                        <td>{{ ticket.platform }}</td>
+                        <td>{{ ticket.mentor.firstName }} {{ ticket.mentor.lastName }}</td>
+                        <td>{{ ticket.timeClosed }}</td>
+                        <td>{{ ticket.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

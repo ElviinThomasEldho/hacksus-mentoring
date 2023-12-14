@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
+    </header>
+    <h1 style="text-align: center;">Welcome Back!</h1>
+    <div class="regInput">
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="team_name">User Name:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <input type="submit" value="Login">
+            <p>{{form.errors}}</p> 
+            {% for message in messages %}
+                <p>{{message}}</p>   
+            {% endfor %}
+        </form>
+    </div>
+</body>
+</html>

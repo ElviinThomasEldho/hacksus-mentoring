@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
+    </header>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="team_name">Team Name:</label>
+        {{form.name}}
+        <br>
+        <label for="table_number">Table Number:</label>
+        {{form.tableNumber}}
+        <br>
+        <label for="venue">Venue:</label>
+        {{form.venue}}
+        <br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

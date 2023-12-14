@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Ticket</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
+        <a class="logout" href="{% url 'logoutUser' %}">Logout</a>
+    </header>
+    <h2>Ticket Details:</h2>
+    <p><strong>Time of Raising Issue:</strong> {{ ticket.timeCreated }}</p>
+    <p><strong>Issue Title:</strong> {{ ticket.title }}</p>
+    <p><strong>Team Name:</strong> {{ ticket.team.name }}</p>
+    <p><strong>Table Number:</strong> {{ ticket.team.tableNumber }}</p>
+    <p><strong>Venue:</strong> {{ ticket.team.venue }}</p>
+    <p><strong>Status:</strong> {{ ticket.status }}</p>
+
+    {% if ticket.status == "Open" %}
+    <a class="btn" href="{% url 'acceptTicket' ticket.id %}">Accept Ticket</a>
+    {% elif ticket.status == "Accepted" %}
+    <a class="btn" href="{% url 'reopenTicket' ticket.id %}">Reopen Ticket</a>
+    <a class="btn" href="{% url 'closeTicket' ticket.id %}">Close Ticket</a>
+    {% endif %}
+</body>
+</html>

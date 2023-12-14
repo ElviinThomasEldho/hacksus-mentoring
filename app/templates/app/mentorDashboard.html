@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
+        <a href="{% url 'logoutUser' %}">Logout</a>
+    </header>
+    <h1 style="text-align: center;">Welcome {{mentor.firstName}}!</h1>
+    <h2>Accepted Tickets</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Time Created</th>
+                <th>Issue Title</th>
+                <th>Team Name</th>
+                <th>Table Number</th>
+                <th>Venue</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate through the list of tickets and display each one -->
+            {% for ticket in acceptedTickets %}
+                <tr>
+                    <td>{{ ticket.timeCreated }}</td>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.team.name }}</td>
+                    <td>{{ ticket.team.tableNumber }}</td>
+                    <td>{{ ticket.team.venue }}</td>
+                    <td>
+                        <a class="btn" href="{% url 'viewTicket' ticket.id %}">View Ticket</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    
+    <h2>Open Tickets</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Time Created</th>
+                <th>Issue Title</th>
+                <th>Team Name</th>
+                <th>Table Number</th>
+                <th>Venue</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate through the list of tickets and display each one -->
+            {% for ticket in openTickets %}
+                <tr>
+                    <td>{{ ticket.timeCreated }}</td>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.team.name }}</td>
+                    <td>{{ ticket.team.tableNumber }}</td>
+                    <td>{{ ticket.team.venue }}</td>
+                    <td>
+                        <a class="btn" href="{% url 'viewTicket' ticket.id %}">View Ticket</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    
+    <h2>Closed Tickets</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Time Created</th>
+                <th>Issue Title</th>
+                <th>Team Name</th>
+                <th>Table Number</th>
+                <th>Venue</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate through the list of tickets and display each one -->
+            {% for ticket in closedTickets %}
+                <tr>
+                    <td>{{ ticket.timeCreated }}</td>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.team.name }}</td>
+                    <td>{{ ticket.team.tableNumber }}</td>
+                    <td>{{ ticket.team.venue }}</td>
+                    <td>
+                        <a class="btn" href="{% url 'viewTicket' ticket.id %}">View Ticket</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Judgement Form</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.teamName}}
+        {{form.tableNumber}}
+        {{form.criteriaA}}
+        {{form.criteriaB}}
+        {{form.criteriaC}}
+        {{form.criteriaD}}
+        {{form.errors}}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
