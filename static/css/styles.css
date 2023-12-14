@@ -122,3 +122,135 @@ p {
     border: 2px solid #0f0;
     color: #0f0 ; /* Black text on hover */
 }
+
+
+.esum {
+    position: relative;
+    counter-increment: esum;
+  }
+  .esum:before {
+    content: counter(esum)".";
+    position: absolute;
+    left: -2.5em;
+    top: 8em;
+    font-size: 1.5em;
+    color: #ffffff;
+  }
+
+.cardWrap {
+	 width: 27em;
+	 margin: 1em 5em;
+	 color: #00ff00;
+     float: left;
+     line-break: auto;
+}
+ .card {
+	 background:black;
+	 height: 15.5em;
+	 float: left;
+	 position: relative;
+	 padding: 1em;
+	 margin-top: 100px;
+     border:solid 2px;
+     border-radius: 10px; 
+}
+
+ h1 {
+	 font-size: 1.2em;
+	 margin-top: 0;
+     color:#00ff00;
+}
+ .title, .venue, .seat, .time {
+	 text-transform: uppercase;
+	 font-weight: normal;
+}
+ .title h2, .venue h2, .seat h2, .time h2 {
+	 font-size: 0.95em;
+	 color: #bababa;
+	 margin: 0;
+}
+ .title span, .venue span, .seat span, .time span {
+	 font-size: 1.05em;
+	 color: #ffffff;
+}
+ .title {
+	 margin: 1em 0 0 0;
+}
+ .venue, .seat {
+	 margin: 0.7em 0 0 0;
+}
+ .time {
+	 margin: 0.7em 0 0 1em;
+}
+ .seat, .time {
+	 float: left;
+}
+
+ .number {
+	 text-align: center;
+	 text-transform: uppercase;
+}
+ .number h3 {
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: #00ff00;
+    -webkit-text-fill-color: black;
+	 margin: 0em -1em 0 0;
+	 font-size: 2.8em;
+}
+ .number span {
+	 display: block;
+     margin-left: 10em;
+     color: #fff;
+}
+ .view {
+     padding: 5px 2px 5px 2px;
+     border: solid 2px #00ff00;
+     border-radius: 8px;
+	 margin: 1.2em 0 0;
+     text-align: center;
+}
+.view a{
+    color: #00ff00;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.view:hover {
+    background: #00ff00;
+}
+.view:hover a{
+    color: #000;
+}
+.closed:hover {
+    background: #777;
+}
+.closed a{
+    color: #777;
+}
+.pending:hover {
+    background: #f9e900;
+}
+.pending a{
+    color: #f9e900;
+}
+
+
+@media (min-width: 320px) and (max-width: 800px) {
+
+      .esum:before {
+        content: counter(esum)".";
+        position: absolute;
+        left: -2em;
+      }
+    .cardWrap {
+        width: 11em;
+        margin: 1em 3em;
+   }
+    .card {
+        height: 18em;
+        padding-right: 1.5em;
+   }
+
+}
+
+

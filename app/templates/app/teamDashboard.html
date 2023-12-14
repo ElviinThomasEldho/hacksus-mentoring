@@ -31,6 +31,33 @@
 
     <div class="raised-tickets">
         <h2>List of Tickets Raised:</h2>
+        {% for  ticket in tickets %}
+        
+        <div class="card">
+            <h1>{{ ticket.team_name }}</h1>
+            <div class="title">
+              <h2>{{ ticket.team_name }}</h2>
+              <span>Team Name</span>
+            </div>
+            <div class="venue">
+              <h2>{{ ticket.venue }}</h2>
+              <span>Venue</span>
+            </div>
+            <div class="seat">
+              <h2>001</h2>
+              <span>table</span>
+            </div>
+            <div class="time">
+              <h2>12:00</h2>
+              <span>time</span>
+            </div>   
+            <div class="number">
+              <h3>001</h3>
+              <span>table</span>
+            </div>
+            </div>
+          </div>
+        {% endfor %}
         <table>
             <thead>
                 <tr>
