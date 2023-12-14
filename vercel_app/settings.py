@@ -87,30 +87,30 @@ WSGI_APPLICATION = 'vercel_app.wsgi.app'
 # }
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'URL': os.getenv('POSTGRES_URL'),
-#         'NAME': os.getenv('PGNAME'),
-#         'USER': os.getenv('PGUSER'),
-#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-#         'HOST': os.getenv('PGHOST'),
-#         'PORT': os.getenv('PGPORT'),
-#     }
-# }
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'URL': 'postgresql://postgres:3C*d-GC4cB*g-3c52Fe*1CBCaG2b143F@postgres.railway.internal:5432/railway',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': '3C*d-GC4cB*g-3c52Fe*1CBCaG2b143F',
-        'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '55068',
+        'URL': os.getenv('POSTGRES_URL'),
+        'NAME': os.getenv('PGNAME'),
+        'USER': os.getenv('PGUSER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('PGHOST'),
+        'PORT': os.getenv('PGPORT'),
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'URL': 'postgresql://postgres:3C*d-GC4cB*g-3c52Fe*1CBCaG2b143F@postgres.railway.internal:5432/railway',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': '3C*d-GC4cB*g-3c52Fe*1CBCaG2b143F',
+#         'HOST': 'viaduct.proxy.rlwy.net',
+#         'PORT': '55068',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
