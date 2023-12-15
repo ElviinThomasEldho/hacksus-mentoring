@@ -198,16 +198,15 @@ def adminDashboard(request):
         if form.is_valid():
             mentor = form.save()
             print(mentor)
-            username = mentor.firstName + mentor.lastName
             password = '12345'
-            newUser = User.objects.create(username = username, password = password)
+            newUser = User.objects.create(username = mentor.email, email=mentor.email, password = password)
             mentor.user = newUser
             print(mentor.user, mentor.firstName, mentor.lastName)
             mentor.save()           
             group = Group.objects.get(name='Mentor') 
             group.user_set.add(newUser)    
             return redirect('adminDashboard')
-    
+
     context = {
         "user":request.user,
         "form":form,
