@@ -12,12 +12,17 @@
     </header>
     <h2>Ticket Details:</h2>
     <p><strong>Time of Raising Issue:</strong> {{ ticket.timeCreated }}</p>
+    <br>
     <p><strong>Issue Title:</strong> {{ ticket.title }}</p>
     <p><strong>Issue Description:</strong> {{ ticket.desc }}</p>
     <p><strong>Platform:</strong> {{ ticket.platform }}</p>
+    <br>
     <p><strong>Team Name:</strong> {{ ticket.team.name }}</p>
     <p><strong>Table Number:</strong> {{ ticket.team.tableNumber }}</p>
     <p><strong>Venue:</strong> {{ ticket.team.venue }}</p>
+    <br>
+    <p><strong>Mentor Name:</strong>{{ ticket.mentor.firstName }} {{ ticket.mentor.lastName }}</p>
+    <p><strong>Mentor Organisation:</strong> {{ ticket.organisation }}</p>
     <p><strong>Status:</strong> {{ ticket.status }}</p>
 
     {% if ticket.status == "Open" %}
