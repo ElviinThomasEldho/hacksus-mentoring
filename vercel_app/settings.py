@@ -52,6 +52,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SESSION_EXPIRE_SECONDS = 10800  
+
 ROOT_URLCONF = 'vercel_app.urls'
 
 TEMPLATES = [
