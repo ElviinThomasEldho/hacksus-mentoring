@@ -1,13 +1,10 @@
+{% extends 'app/main.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% block title %}
     <title>Mentor Page</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-</head>
-<body>
+{% endblock %}
+{% block content %}
     <header>
         <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
         <a href="{% url 'logoutUser' %}">Logout</a>
@@ -115,4 +112,4 @@
         <button type="submit">Submit</button>
     </form>
 </body>
-</html>
+{% endblock %}

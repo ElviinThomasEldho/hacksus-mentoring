@@ -1,13 +1,10 @@
+{% extends 'app/main.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% block title %}
     <title>View Ticket</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-</head>
-<body>
+{% endblock %}
+{% block content %}
     <header>
         <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
         <a class="logout" href="{% url 'logoutUser' %}">Logout</a>
@@ -27,4 +24,4 @@
     <a class="btn" href="{% url 'closeTicket' ticket.id %}">Close Ticket</a>
     {% endif %}
 </body>
-</html>
+{% endblock %}
