@@ -73,10 +73,10 @@ class Judgement(models.Model):
     teamName = models.CharField("Team Name", max_length=255, null=True)
     tableNumber = models.CharField("Table Number",max_length=10,  null=True)
     round = models.CharField("Round", max_length=255, choices=ROUND, null=True)
-    criteriaA = models.CharField("Criteria A", max_length=255, choices=GRADE, null=True)
-    criteriaB = models.CharField("Criteria B", max_length=255, choices=GRADE, null=True)
-    criteriaC = models.CharField("Criteria C", max_length=255, choices=GRADE, null=True)
-    criteriaD = models.CharField("Criteria D", max_length=255, choices=GRADE, null=True)
+    criteriaA = models.CharField("Innovation", max_length=255, choices=GRADE, null=True)
+    criteriaB = models.CharField("Feasibility", max_length=255, choices=GRADE, null=True)
+    criteriaC = models.CharField("Social Relevance", max_length=255, choices=GRADE, null=True)
+    criteriaD = models.CharField("Business Model", max_length=255, choices=GRADE, null=True)
     timeCreated = models.DateTimeField("Time Created", auto_now_add=True)
     
     def __str__(self):
