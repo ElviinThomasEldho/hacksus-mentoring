@@ -198,7 +198,7 @@ def adminDashboard(request):
         if form.is_valid():
             mentor = form.save()
             print(mentor)
-            password = '12345'
+            password = 'IEDC#123'
             newUser = User.objects.create(username = mentor.email, email=mentor.email, password = password)
             mentor.user = newUser
             print(mentor.user, mentor.firstName, mentor.lastName)
