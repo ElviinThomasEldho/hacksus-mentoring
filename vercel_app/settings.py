@@ -103,12 +103,12 @@ WSGI_APPLICATION = 'vercel_app.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'URL': 'postgresql://postgres:3C*d-GC4cB*g-3c52Fe*1CBCaG2b143F@postgres.railway.internal:5432/railway',
+        'URL': 'postgresql://postgres:3*14b6geffGg3cGdbEfA5*g5aAgBBEEb@postgres.railway.internal:5432/railway',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': '3C*d-GC4cB*g-3c52Fe*1CBCaG2b143F',
+        'PASSWORD': '3*14b6geffGg3cGdbEfA5*g5aAgBBEEb',
         'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '55068',
+        'PORT': '29007',
     }
 }
 
