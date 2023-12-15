@@ -34,3 +34,9 @@ class JudgementForm(ModelForm):
     class Meta:
         model = Judgement
         exclude = ['mentor','round','timeCreated']
+        
+
+class MentorForm(ModelForm):
+    class Meta:
+        model = Mentor
+        exclude = ['user']

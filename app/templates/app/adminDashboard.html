@@ -15,8 +15,45 @@
     <h1 style="text-align: center;">Welcome {{user.username}}!</h1>
     <br>
     <a href="{% url 'exportData' %}" class="btn-submit">Export Judgements</a>
+    
     <h2 style="display: block; text-align: left; 
-    width: fit-content; margin-top: 30px;">Your Judgements</h2>
+    width: fit-content; margin-top: 30px;">Mentor Form</h2>
+    <form action="" method="POST" style="display: block;">
+        {% csrf_token %}
+        <label for="">{{form.firstName.label}}</label>        
+        {{form.firstName}}
+        <label for="">{{form.lastName.label}}</label>
+        {{form.lastName}}
+        <label for="">{{form.organisation.label}}</label>
+        {{form.organisation}}
+        {{form.errors}}
+        <button class="btn-submit" type="submit">Submit</button>
+    </form>
+
+    <h2 style="display: block; text-align: left; 
+    width: fit-content; margin-top: 30px;">Mentors</h2>
+    
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Full Name</th>
+            <th>Organisation</th>
+        </thead>
+        <tbody>
+            {% for mentor in mentors %}
+            <tr>
+                <td>{{ mentor.id }}</td>
+                <td>{{ mentor.user.username }}</td>
+                <td>{{ mentor.firstName }} {{ mentor.lastName }}</td>
+                <td>{{ mentor.organisation }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 style="display: block; text-align: left; 
+    width: fit-content; margin-top: 30px;">Judgements</h2>
     
     <table>
         <thead>

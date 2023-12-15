@@ -187,15 +187,33 @@ def adminDashboard(request):
     acceptedTickets = Ticket.objects.filter(status='Accepted').order_by('timeCreated')
     closedTickets = Ticket.objects.filter(status='Closed').order_by('timeCreated')
     judgements = Judgement.objects.all()
+    mentors = Mentor.objects.all()
+
+    form = MentorForm()
 
     print(judgements)
+    
+    if request.method == 'POST':
+        form = MentorForm(request.POST)
+        if form.is_valid():
+            mentor = form.save()
+            print(mentor)
+            username = mentor.firstName + mentor.lastName
+            password = '12345'
+            newUser = User.objects.create(username = username, password = password)
+            mentor.user = newUser
+            print(mentor.user, mentor.firstName, mentor.lastName)
+            mentor.save()           
+            return redirect('adminDashboard')
 
     context = {
         "user":request.user,
+        "form":form,
         "openTickets": openTickets,
         "acceptedTickets": acceptedTickets,
         "closedTickets": closedTickets,
         "judgements": judgements,
+        "mentors": mentors,
         }
     
     return render(request, "app/adminDashboard.html", context)
