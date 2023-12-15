@@ -204,8 +204,10 @@ def adminDashboard(request):
             mentor.user = newUser
             print(mentor.user, mentor.firstName, mentor.lastName)
             mentor.save()           
+            group = Group.objects.get(name='Mentor') 
+            group.user_set.add(newUser)    
             return redirect('adminDashboard')
-
+    
     context = {
         "user":request.user,
         "form":form,

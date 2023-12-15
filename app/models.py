@@ -25,6 +25,7 @@ class Mentor(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     firstName = models.CharField("First Name", max_length=255, null=True)
     lastName = models.CharField("Last Name", max_length=255, null=True)
+    email = models.EmailField("Email Address", null=True)
     organisation = models.CharField("Organisation", max_length=255, null=True)
     
     def __str__(self):

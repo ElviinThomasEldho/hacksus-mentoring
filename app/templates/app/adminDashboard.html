@@ -24,6 +24,8 @@
         {{form.firstName}}
         <label for="">{{form.lastName.label}}</label>
         {{form.lastName}}
+        <label for="">{{form.email.label}}</label>
+        {{form.email}}
         <label for="">{{form.organisation.label}}</label>
         {{form.organisation}}
         {{form.errors}}
@@ -38,6 +40,7 @@
             <th>ID</th>
             <th>Username</th>
             <th>Full Name</th>
+            <th>Email</th>
             <th>Organisation</th>
         </thead>
         <tbody>
@@ -46,6 +49,7 @@
                 <td>{{ mentor.id }}</td>
                 <td>{{ mentor.user.username }}</td>
                 <td>{{ mentor.firstName }} {{ mentor.lastName }}</td>
+                <td>{{ mentor.email }}</td>
                 <td>{{ mentor.organisation }}</td>
             </tr>
             {% endfor %}
