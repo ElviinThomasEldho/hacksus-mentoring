@@ -16,4 +16,7 @@ urlpatterns = [
     path('accept-ticket/<int:pk>/', views.acceptTicket, name='acceptTicket'),
     path('close-ticket/<int:pk>/', views.closeTicket, name='closeTicket'),
     path('reopen-ticket/<int:pk>/', views.reopenTicket, name='reopenTicket'),
+    
+    path('admin-dashboard/', views.adminDashboard, name='adminDashboard'),
+    path('admin-dashboard/export-data/', views.exportData, name='exportData'),
 ]

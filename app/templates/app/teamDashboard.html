@@ -6,7 +6,8 @@
 {% endblock %}
 {% block content %}
     <header>
-        <img src="{% static 'images/new-logo.webp' %}" alt="Hackathon Logo">
+        <h3 style="font-family: 'Rubik', sans-serif;
+        font-family: 'Space Grotesk', sans-serif; color: white; font-weight: bold;">HackSUS</h3>
         <a class="logout" href="{% url 'logoutUser' %}">Logout</a>
     </header>
     
@@ -28,34 +29,37 @@
 
     <div class="raised-tickets">
         <h2>List of Tickets Raised:</h2>
+        <div style="color: #0f0;" class="esum cardWrap">
         {% for  ticket in tickets %}
         
-        <div class="card">
-            <h1>{{ ticket.team_name }}</h1>
+        <div style="color: #0f0;" class="esum cardWrap">
+          <div class="card">
+            <h1>{{ ticket.title }}</h1>
             <div class="title">
-              <h2>{{ ticket.team_name }}</h2>
+              <h2>{{ ticket.team.name }}</h2>
               <span>Team Name</span>
             </div>
             <div class="venue">
-              <h2>{{ ticket.venue }}</h2>
+              <h2>{{ ticket.team.venue }}</h2>
               <span>Venue</span>
             </div>
             <div class="seat">
-              <h2>001</h2>
-              <span>table</span>
+              <h2>{{ ticket.id }}</h2>
+              <span>TNO</span>
             </div>
             <div class="time">
-              <h2>12:00</h2>
+              <h2>{{ticket.timeCreated.time}}</h2>
               <span>time</span>
             </div>   
             <div class="number">
-              <h3>001</h3>
+              <h3>{{ ticket.team.tableNumber}}</h3>
               <span>table</span>
             </div>
-            </div>
           </div>
+        </div>
         {% endfor %}
-        <table>
+        </div>
+        <!-- <table>
             <thead>
                 <tr>
                     <th>Time of Creation</th>
@@ -68,8 +72,8 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Iterate through the list of tickets and display each one -->
-                {% for ticket in tickets %}
+                Iterate through the list of tickets and display each one -->
+                <!-- {% for ticket in tickets %}
                     <tr>
                         <td>{{ ticket.timeCreated }}</td>
                         <td>{{ ticket.title }}</td>
@@ -81,7 +85,7 @@
                     </tr>
                 {% endfor %}
             </tbody>
-        </table>
+        </table> -->
     </div>
 </body>
 {% endblock %}

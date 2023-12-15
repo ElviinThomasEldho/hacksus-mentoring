@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     {% block title %}
 
     {% endblock %}    
@@ -26,7 +31,8 @@
 
         h1, h2, h3 {
             color: #0f0;
-            margin-inline: 100px;
+            display: block;
+            /* margin: 50px 20px;    */
         }
 
         header {
@@ -71,6 +77,7 @@
         input[type="text"],
         input[type="password"],
         input[type="email"],
+        select,
         textarea {
             width: 100%;
             padding: 8px;
@@ -82,7 +89,7 @@
             color: #0f0; /* Green text */
         }
 
-        input[type="submit"], .btn {
+        input[type="submit"], .btn, .btn-submit {
             text-decoration: none;
             background-color: #0f0; /* Green background */
             color: #000; /* Black text */
@@ -123,7 +130,7 @@
             color: #000; /* Black text */
         }
 
-        p {
+        p, td {
             color: antiquewhite;
         }
 
@@ -138,18 +145,18 @@
             position: relative;
             counter-increment: esum;
         }
-        .esum:before {
+        /* .esum:before {
             content: counter(esum)".";
             position: absolute;
             left: -2.5em;
             top: 8em;
             font-size: 1.5em;
             color: #ffffff;
-        }
+        } */
 
         .cardWrap {
-            width: 27em;
-            margin: 1em 5em;
+            /* width: 27em; */
+            margin: 0.1em 2em;
             color: #00ff00;
             float: left;
             line-break: auto;
@@ -160,7 +167,7 @@
             float: left;
             position: relative;
             padding: 1em;
-            margin-top: 100px;
+            margin-top: 10px;
             border:solid 2px;
             border-radius: 10px; 
         }

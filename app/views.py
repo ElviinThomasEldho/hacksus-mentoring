@@ -7,6 +7,9 @@ from .models import *
 from .forms import *
 from .decorators import *
 
+import xlwt 
+import datetime
+
 # Create your views here.
 def loginUser(request):
     if request.method == 'POST':
@@ -20,7 +23,9 @@ def loginUser(request):
             if request.user.groups.exists(): 
                 groups = set(group.name for group in request.user.groups.all())
                 for group in groups:
-                    if group == "Team":
+                    if group == "Admin":
+                        return redirect('adminDashboard')
+                    elif group == "Team":
                         return redirect('teamDashboard')
                     elif group == "Mentor":
                         return redirect('mentorDashboard')
@@ -76,13 +81,16 @@ def registerTeam(request):
     
     return render(request, "app/registerTeam.html", context)
 
-@mentor_only
+@admin_mentor_only
 def mentorDashboard(request):
     mentor = Mentor.objects.get(user = request.user) 
     openTickets = Ticket.objects.filter(status='Open').order_by('timeCreated')
     acceptedTickets = Ticket.objects.filter(status='Accepted', mentor=mentor).order_by('timeCreated')
     closedTickets = Ticket.objects.filter(status='Closed').order_by('timeCreated')
-    
+    judgements = Judgement.objects.filter(mentor = mentor)
+
+    print(judgements)
+
     form = JudgementForm()
     
     if request.method == 'POST':
@@ -103,11 +111,12 @@ def mentorDashboard(request):
         "openTickets": openTickets,
         "acceptedTickets": acceptedTickets,
         "closedTickets": closedTickets,
+        "judgements": judgements,
         }
     
     return render(request, "app/mentorDashboard.html", context)
 
-@mentor_only
+@admin_mentor_only
 def viewTicket(request, pk):
     ticket = Ticket.objects.get(id=pk)
     
@@ -117,7 +126,7 @@ def viewTicket(request, pk):
     
     return render(request, "app/viewTicket.html", context)
 
-@mentor_only
+@admin_mentor_only
 def acceptTicket(request, pk):
     ticket = Ticket.objects.get(id=pk)
     mentor = Mentor.objects.get(user=request.user)
@@ -127,7 +136,7 @@ def acceptTicket(request, pk):
     
     return redirect('mentorDashboard')
 
-@mentor_only
+@admin_mentor_only
 def closeTicket(request, pk):
     ticket = Ticket.objects.get(id=pk)
     mentor = Mentor.objects.get(user=request.user)
@@ -137,7 +146,7 @@ def closeTicket(request, pk):
     
     return redirect('mentorDashboard')
 
-@mentor_only
+@admin_mentor_only
 def reopenTicket(request, pk):
     ticket = Ticket.objects.get(id=pk)
     mentor = Mentor.objects.get(user=request.user)
@@ -170,3 +179,68 @@ def teamDashboard(request):
         }
     
     return render(request, "app/teamDashboard.html", context)
+
+
+@admin_only
+def adminDashboard(request):
+    openTickets = Ticket.objects.filter(status='Open').order_by('timeCreated')
+    acceptedTickets = Ticket.objects.filter(status='Accepted').order_by('timeCreated')
+    closedTickets = Ticket.objects.filter(status='Closed').order_by('timeCreated')
+    judgements = Judgement.objects.all()
+
+    print(judgements)
+
+    context = {
+        "user":request.user,
+        "openTickets": openTickets,
+        "acceptedTickets": acceptedTickets,
+        "closedTickets": closedTickets,
+        "judgements": judgements,
+        }
+    
+    return render(request, "app/adminDashboard.html", context)
+
+
+@admin_only
+def exportData(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'filename=JudgementData' + str(datetime.datetime.now()) + '.xls'
+    wb = xlwt.Workbook(encoding='utf-8')
+    wsJudgement = wb.add_sheet('Judgements List')
+    row_num = 0
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+
+    columns=[
+        ['ID','Mentor','Round','Team Name',"Table Number",'Criteria A', 'Criteria B', 'Criteria C','Criteria D','Time Created']
+    ]
+
+    for col_num in range(len(columns[0])):
+        wsJudgement.write(row_num, col_num, columns[0][col_num],font_style)
+        
+    font_style = xlwt.XFStyle()
+
+    judgementList = Judgement.objects.all().values_list('id','mentor','round','teamName','tableNumber','criteriaA','criteriaB', 'criteriaC', 'criteriaD','timeCreated')
+   
+
+    judgementList2 = []
+
+    row_num = 0
+    for row in judgementList:
+        row_num +=1
+        temp = list(row)
+        temp[9] = str(temp[9].date()) + " " + str(temp[9].time())
+        temp[1] = Mentor.objects.get(id=temp[1]).firstName + " " + Mentor.objects.get(id=temp[1]).lastName + " | " + Mentor.objects.get(id=temp[1]).organisation
+        # 18
+        judgementList2.append(tuple(temp))
+
+    row_num = 0
+    for row in judgementList2:
+        row_num +=1
+        for column_num in range(len(row)):
+            wsJudgement.write(row_num, column_num, str(row[column_num]),font_style)
+
+    wb.save(response)
+
+    return response
